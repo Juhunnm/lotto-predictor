@@ -26,11 +26,7 @@ export default Sidebar;
 
 
 const SidebarContainer = styled.aside`
-  display: flex;
-  flex-direction: column;
-  background: #6497b1;
-  width: 250px;
-  height: 100vh;
+  height : 50px;
   color: white;
   font-size: 24px;
   font-weight: bold;
@@ -40,7 +36,8 @@ const SidebarContainer = styled.aside`
 
 const Nav = styled.nav`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content : space-evenly;
   gap: 15px;
 `;
 const NavLink = styled(Link)`
@@ -50,7 +47,7 @@ const NavLink = styled(Link)`
 `
 const NavItem = styled.div`
   padding: 12px;
-  background: #005b96;
+  background: #4da14a;
   border-radius: 8px;
   cursor: pointer;
   font-size: 18px;
@@ -58,7 +55,9 @@ const NavItem = styled.div`
   transition: all 0.3s;
 
   &:hover {
-    background-color: #03396c;
+    background-color: #4be239;
     transform: translateX(5px);
+    color :#262626;
+    font-size : 20px;
   }
 `;

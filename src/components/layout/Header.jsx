@@ -11,15 +11,14 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.header`
-  background : #6497b1;
-  color : white;
+  background: #262626;
+  color: #efefef;
   padding: 20px;
-  text-align : center;
-  font-size : 24px;
-  font-weight : bold;
-  box-shadow : 0px 4px 6px rgba(0,0,0,0.2);
-  width : 100%;
-`
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+`;
 
 const Logo = styled.h1`
   margin: 0;

@@ -11,13 +11,12 @@ const Footer = () => {
 export default Footer;
 
 const FooterContainer = styled.footer`
-  background :#b3cde0;
+  background :#262626;
   color : white;
   padding:20px;
   text-align :center;
   font-size : 14px;
-  width : 100%;
-  box-shadow : 0px -4px 6px rgba(0,0,0,0.1);
+  box-shadow : 0px -4px 6px rgba(0,0,0,0.2);
 `
 // const FooterContainer = styled.footer`
 //   background: #2c3e50; /* Same as header */

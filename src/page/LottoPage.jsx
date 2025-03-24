@@ -1,11 +1,11 @@
-import LottoNumberGeneration from "../features/LottoNumberGeneration"
+import Lotto from "../features/Lotto";
 
 const LottoPage = () => {
   return (
     <div>
-            <LottoNumberGeneration />
+      <Lotto />
     </div>
-  )
-}
+  );
+};
 
-export default LottoPage
+export default LottoPage;
