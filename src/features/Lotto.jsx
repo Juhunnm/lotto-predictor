@@ -1,14 +1,23 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getColor from "../utils/GetColor";
 import LottoNumber from "../components/LottoNumber";
 import LottoList from "../components/LottoList";
+import { fetchLottoNumbers } from "../api/lottoApi";
 
 
 const Lotto = () => {
   const [lottoNumber, setLottoNumber] = useState({ numbers: [], bonus: null });
   const [savedNumbers, setSavedNumbers] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  useEffect(() => {
+    const loadLottoNumbers = async () =>{
+      const data = await fetchLottoNumbers();
+      setSavedNumbers(data);
+    }
+    loadLottoNumbers();
+  },[])
 
   const generateRandomNumbers = () => {
     let numbers = new Set();
