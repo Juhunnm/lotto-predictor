@@ -3,22 +3,27 @@ import { useEffect, useState } from "react";
 import getColor from "../utils/GetColor";
 import LottoNumber from "../components/LottoNumber";
 import LottoList from "../components/LottoList";
-import { fetchLottoNumbers } from "../api/lottoApi";
-
+import {
+  deleteLottoNumber,
+  getLottoNumbers,
+  insertLottoNumber,
+} from "../api/lottoApi";
 
 const Lotto = () => {
   const [lottoNumber, setLottoNumber] = useState({ numbers: [], bonus: null });
   const [savedNumbers, setSavedNumbers] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
+  //로또 번호 불러오기기
   useEffect(() => {
-    const loadLottoNumbers = async () =>{
-      const data = await fetchLottoNumbers();
+    const loadLottoNumbers = async () => {
+      const data = await getLottoNumbers();
       setSavedNumbers(data);
-    }
+    };
     loadLottoNumbers();
-  },[])
+  }, []);
 
+  //랜던 로또 번호 생성성
   const generateRandomNumbers = () => {
     let numbers = new Set();
     while (numbers.size < 7) {
@@ -32,7 +37,8 @@ const Lotto = () => {
     });
   };
 
-  const handleSaveNumbers = () => {
+  //로또 번호 저장
+  const handleSaveNumbers = async () => {
     if (
       savedNumbers.some(
         (saved) => JSON.stringify(saved) === JSON.stringify(lottoNumber)
@@ -43,8 +49,15 @@ const Lotto = () => {
     if (savedNumbers.length >= 5) {
       return alert("5개 까지 등록할 수 있습니다.");
     }
-    setSavedNumbers((prev) => [...prev, lottoNumber]);
-    console.log(savedNumbers);
+
+    const result = await insertLottoNumber(
+      lottoNumber.numbers,
+      lottoNumber.bonus
+    );
+    if (result) {
+      console.log("로또 번호 저장 완료", savedNumbers);
+      setSavedNumbers((prev) => [...prev, lottoNumber]);
+    }
   };
 
   const handleChange = (e, index) => {
@@ -56,8 +69,11 @@ const Lotto = () => {
   const handleBonusChange = (e) => {
     setLottoNumber((prev) => ({ ...prev, bonus: Number(e.target.value) }));
   };
-  const handleDelete = (index) => {
-    setSavedNumbers((prev) => prev.filter((_, i) => i !== index));
+  const handleDelete = async (id) => {
+    const isDeleted = await deleteLottoNumber(id);
+    if (isDeleted) {
+      setSavedNumbers((prev) => prev.filter((item) => item.id !== id));
+    }
   };
 
   return (

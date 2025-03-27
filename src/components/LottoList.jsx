@@ -29,7 +29,7 @@ const LottoList = ({
           />
 
           {hoveredIndex === index && (
-            <Button onClick={() => onDelete(index)}>X</Button>
+            <Button onClick={() => onDelete(item.id)}>X</Button>
           )}
         </SavedNumbersWrapper>
       ))}

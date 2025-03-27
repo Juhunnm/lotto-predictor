@@ -5,6 +5,7 @@ import lottoRoutes from "./routes/lottoRoutes.js";
 
 
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
